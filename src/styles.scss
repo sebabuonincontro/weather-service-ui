@@ -1,0 +1,139 @@
+@import '~@angular/material/_theming';
+@import './palette';
+
+@include mat-core();
+
+$barter-app-primary: mat-palette($md-brtgreen);
+$barter-app-accent:  mat-palette($md-brtteal, A200, A100, A400);
+$barter-app-warn:    mat-palette($md-brtbrown);
+$barter-app-theme: mat-light-theme($barter-app-primary, $barter-app-accent, $barter-app-warn);
+@include angular-material-theme($barter-app-theme);
+
+$headerTextColor: mat-color(mat-palette($md-brtteal));
+$appBarBackgroundColor: mat-color(mat-palette($md-brtteal), 700);
+$sideBarBackgroundColor: mat-color(mat-palette($md-brtteal), 500);
+$appBackgroundColor: mat-color(mat-palette($md-brttan), 200);
+$menuHoverBackgroundColor: mat-color(mat-palette($md-brtblue), 500);
+$popupBackgroundColor: mat-color(mat-palette($md-brtteal), 600);
+
+/* You can add global styles to this file, and also import other style files */
+html {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 0.811em;
+}
+
+input {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 0.811rem;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  background-color: lightgrey;
+}
+
+body > {
+  display: flex;
+}
+
+.text-center {
+  text-align: center;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+md-card {
+  margin: 20px;
+  padding: 20px;
+}
+
+md-input-calendar {
+  transform: translateY(-1em);
+}
+
+md-input-container.ng-touched.ng-invalid .mat-input-underline,
+md-input-container.ng-dirty.ng-invalid .mat-input-underline {
+  border-color: red !important;
+}
+
+md-input-container.ng-touched.ng-invalid md-hint,
+md-input-container.ng-dirty.ng-invalid md-hint {
+  color: red;
+}
+
+.mat-select-trigger,
+.mat-option {
+  font-size: 1rem !important;
+}
+
+mat-button-toggle-label-content {
+  padding-left:10px;
+  padding-right: 10px;
+}
+
+h1, h2, h3, h5, h6 {
+  font-family: Roboto, 'Roboto-Regular', sans-serif;
+  font-style: normal;
+  color: $headerTextColor;
+}
+
+h4 {
+  font-family: Roboto, 'Roboto-Regular', sans-serif;
+  font-style: normal;
+  padding: 1px;
+}
+
+app-menu {
+.navbar {
+  background-color: $appBarBackgroundColor !important;
+}
+
+.sidebar {
+  background-color: $sideBarBackgroundColor !important;
+}
+
+.menu-item {
+&:hover {
+   background-color: $menuHoverBackgroundColor !important;
+ }
+
+.popup {
+  background-color: $popupBackgroundColor !important;
+}
+}
+
+sub-menu {
+&>div {
+   background-color: $popupBackgroundColor !important;
+
+.item:hover {
+  background-color: $menuHoverBackgroundColor !important;
+}
+}
+}
+
+.menu-item, sub-menu {
+.item {
+&:hover {
+   background-color: $menuHoverBackgroundColor !important;
+ }
+
+// padding: 12px 20px !important;
+}
+}
+
+}
+
+.mat-app-background {
+  /*background-color: #f2f2f2;*/
+  background-color: $appBackgroundColor;
+}
+
+pagination li.active {
+  background-color: mat-color($barter-app-primary) !important;
+// color: mat-color($barter-app-primary, 500-contrast) !important;
+}

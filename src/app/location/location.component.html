@@ -1,0 +1,38 @@
+<div>
+  <div class="title">
+    <h3>Board: {{ boardName }}</h3>
+  </div>
+  <div>
+    <div class="add-location">
+      <md-input-container>
+        <input mdInput placeholder="Add New Location" [(ngModel)]="locationName" required>
+      </md-input-container>
+      <button md-button title="Button" (click)="save()">Save</button>
+    </div>
+    <md-card *ngFor="let location of locations">
+      <md-card-title>
+        <h4>{{ location.location }}</h4>
+        <md-icon style="cursor: pointer;">delete</md-icon>
+      </md-card-title>
+      <md-card-content>
+        <div class="location">
+          <md-card class="news">
+            <md-card-content *ngIf="location.news">
+              <div>{{location.news.date}}</div>
+              <div>{{location.news.temp}}</div>
+              <div>{{location.news.condition}}</div>
+            </md-card-content>
+          </md-card>
+          <md-card class="forecast" *ngFor="let forecast of location.forecasts">
+            <md-card-content>
+              <div>{{forecast.date}}</div>
+              <div>{{forecast.high}}</div>
+              <div>{{forecast.low}}</div>
+              <div>{{forecast.forecast}}</div>
+            </md-card-content>
+          </md-card>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div>
+  <div class="add-board">
+    <md-input-container>
+      <input mdInput placeholder="Add New Board" [(ngModel)]="boardName" required>
+    </md-input-container>
+    <button md-button title="Button" (click)="save()">Save</button>
+  </div>
+  <div class="boards">
+    <md-card *ngFor="let board of boards">
+      <md-card-content>
+        <div class="description" (click)="goTo(board.description)">{{board.description}}</div>
+        <md-icon style="cursor: pointer" (click)="delete(board.id)">delete</md-icon>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
