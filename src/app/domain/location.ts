@@ -9,7 +9,7 @@ export class Location {
 export class News{
   id: number;
   woeid: string;
-  createDate: Date;
+  createDate: string;
   date: string;
   temp: string;
   condition: string;
@@ -19,7 +19,7 @@ export class Forecast{
   id: number;
   newsId: number;
   woeid: number;
-  date: string;
+  date: Date;
   high: number;
   low: number;
   forecast: string

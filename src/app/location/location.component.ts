@@ -6,6 +6,7 @@ import {LocationService} from "../services/location.service";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx';
 import {Board} from "../domain/board";
+import {environment} from "../../environments/environment";
 
 @Component({
   templateUrl: "./location.component.html",
@@ -29,7 +30,7 @@ export class LocationComponent implements OnInit {
       this.getLocations().subscribe( board => this.getForecasts(board));
     });
 
-    Observable.interval(120000) //2 minutes
+    Observable.interval(300000) //each 5 minutes
       .switchMap( () => this.getLocations())
       .subscribe( board => this.getForecasts(board));
   }
@@ -68,5 +69,9 @@ export class LocationComponent implements OnInit {
         }
       });
     });
+  }
+
+  goBack(){
+    window.location.href = environment.endPoint.board;
   }
 }

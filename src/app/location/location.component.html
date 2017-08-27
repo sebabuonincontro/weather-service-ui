@@ -1,4 +1,5 @@
 <div>
+  <md-icon style="cursor: pointer;" (click)="goBack()">arrow_back</md-icon>
   <div class="title">
     <h3>Board: {{ boardName }}</h3>
   </div>
@@ -18,16 +19,15 @@
         <div class="location">
           <md-card class="news">
             <md-card-content *ngIf="location.news">
-              <div>{{location.news.date}}</div>
-              <div>{{location.news.temp}}</div>
+              <div>{{location.news.temp}}º</div>
               <div>{{location.news.condition}}</div>
             </md-card-content>
           </md-card>
           <md-card class="forecast" *ngFor="let forecast of location.forecasts">
             <md-card-content>
-              <div>{{forecast.date}}</div>
-              <div>{{forecast.high}}</div>
-              <div>{{forecast.low}}</div>
+              <div>{{forecast.date | date: 'dd/MM'}}</div>
+              <div>{{forecast.high}}º</div>
+              <div>{{forecast.low}}º</div>
               <div>{{forecast.forecast}}</div>
             </md-card-content>
           </md-card>
