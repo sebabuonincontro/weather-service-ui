@@ -12,7 +12,7 @@
     <md-card *ngFor="let location of locations">
       <md-card-title>
         <h4>{{ location.location }}</h4>
-        <md-icon style="cursor: pointer;">delete</md-icon>
+        <md-icon style="cursor: pointer;" (click)="delete(location)">delete</md-icon>
       </md-card-title>
       <md-card-content>
         <div class="location">

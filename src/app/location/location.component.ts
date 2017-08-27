@@ -58,4 +58,15 @@ export class LocationComponent implements OnInit {
       });
     })
   }
+
+  delete(location: Location){
+    this.locationService.delete(this.boardName, location.woeid).subscribe( result => {
+      this.locations.forEach( item => {
+        if(item.id === location.id){
+          const index = this.locations.indexOf(location, 0);
+          this.locations.splice(index, 1);
+        }
+      });
+    });
+  }
 }

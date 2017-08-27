@@ -19,4 +19,8 @@ export class LocationService {
     return this.http.post(this.boardUrl + "/" + boardName, {location: locationName})
       .map( l => l.json() as Location);
   }
+
+  delete(boardName: string, woeid: string) {
+    return this.http.delete( this.boardUrl + "/" + boardName + "/" + woeid);
+  }
 }
