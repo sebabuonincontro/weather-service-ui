@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {BoardService} from "../services/board.service";
 import {Board} from "../domain/board";
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: "board",
@@ -13,11 +14,14 @@ export class BoardComponent implements OnInit{
   boards: Board[];
   boardName: string;
 
-  constructor(private boardService: BoardService){}
+  constructor(private boardService: BoardService, private snackBar: MdSnackBar){}
 
   save(){
     this.boardService.save(this.boardName).subscribe(
-      newBoard => {this.boards.push(newBoard)},
+      newBoard => {
+        this.boards.push(newBoard)
+        this.showMessage("Board Saved.");
+      },
       error => { console.error(error)}
     )
   }
@@ -40,6 +44,7 @@ export class BoardComponent implements OnInit{
           if(board.id === boardId){
             const index = this.boards.indexOf(board, 0);
             this.boards.splice(index, 1);
+            this.showMessage("Board Deleted.");
           }
         });
       },
@@ -47,5 +52,11 @@ export class BoardComponent implements OnInit{
         console.error(error);
       }
     )
+  }
+
+  showMessage(message: string){
+    this.snackBar.open(message, null, {
+      duration: 2000
+    });
   }
 }

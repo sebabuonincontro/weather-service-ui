@@ -8,7 +8,7 @@ import {BoardComponent} from "./board/board.component";
 import {BoardService} from "./services/board.service";
 import {
   MaterialModule, MdButtonModule, MdCardModule, MdDialogModule, MdIconModule,
-  MdInputModule
+  MdInputModule, MdSnackBar, MdSnackBarModule
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -33,7 +33,8 @@ import {AppRoutingModule} from "app/app.routing";
     BrowserAnimationsModule,
     AppRoutingModule,
     MdIconModule,
-    MdDialogModule
+    MdDialogModule,
+    MdSnackBarModule
   ],
   exports: [
     RouterModule

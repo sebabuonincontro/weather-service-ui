@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx';
 import {Board} from "../domain/board";
 import {environment} from "../../environments/environment";
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   templateUrl: "./location.component.html",
@@ -21,7 +22,8 @@ export class LocationComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private boardService: BoardService,
-              private locationService: LocationService){}
+              private locationService: LocationService,
+              private snackBar: MdSnackBar){}
 
   ngOnInit(): void {
     this.route.params.subscribe( params => {
@@ -30,7 +32,7 @@ export class LocationComponent implements OnInit {
       this.getLocations().subscribe( board => this.getForecasts(board));
     });
 
-    Observable.interval(300000) //each 5 minutes
+    Observable.interval(60000) //each 5 minutes
       .switchMap( () => this.getLocations())
       .subscribe( board => this.getForecasts(board));
   }
@@ -45,6 +47,7 @@ export class LocationComponent implements OnInit {
       this.locationService.getWithNewsBy(location.woeid).subscribe( forecast => {
         location.news = forecast.news;
         location.forecasts = forecast.forecasts;
+        this.showMessage("Forecast Updated.");
       })
     });
   }
@@ -53,10 +56,7 @@ export class LocationComponent implements OnInit {
   save() {
     this.locationService.save(this.boardName, this.locationName).subscribe( newLocation => {
       this.locations.push(newLocation);
-      this.locationService.getWithNewsBy(newLocation.woeid).subscribe( forecast => {
-        newLocation.news = forecast.news;
-        newLocation.forecasts = forecast.forecasts;
-      });
+      this.showMessage("Location Saved.");
     })
   }
 
@@ -66,6 +66,7 @@ export class LocationComponent implements OnInit {
         if(item.id === location.id){
           const index = this.locations.indexOf(location, 0);
           this.locations.splice(index, 1);
+          this.showMessage("Location Deleted.");
         }
       });
     });
@@ -73,5 +74,11 @@ export class LocationComponent implements OnInit {
 
   goBack(){
     window.location.href = environment.endPoint.board;
+  }
+
+  showMessage(message: string){
+    this.snackBar.open(message, null, {
+      duration: 2000
+    });
   }
 }
